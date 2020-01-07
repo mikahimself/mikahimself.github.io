@@ -1,23 +1,22 @@
 <!DOCTYPE html>
 <html xmlns='http://www.w3.org/1999/xhtml' lang='' xml:lang=''>
+
 <head>
 	<meta charset='utf-8' />
-	<meta name='viewport' content='width=device-width, user-scalable=no' />
-	<title></title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+	<title>Pong || Mika Himself</title>
 	<style type='text/css'>
-
 		body {
 			touch-action: none;
-			margin: 0;
+			/*margin: 0;
 			border: 0 none;
 			padding: 0;
-			text-align: center;
-			background-color: black;
+			text-align: center;*/
 		}
 
 		#canvas {
 			display: block;
-			margin: 0;
 			color: white;
 		}
 
@@ -84,7 +83,7 @@
 			position: relative;
 		}
 
-		#status-indeterminate > div {
+		#status-indeterminate>div {
 			width: 4.5px;
 			height: 0;
 			border-style: solid;
@@ -94,14 +93,37 @@
 			position: absolute;
 		}
 
-		#status-indeterminate > div:nth-child(1) { transform: rotate( 22.5deg); }
-		#status-indeterminate > div:nth-child(2) { transform: rotate( 67.5deg); }
-		#status-indeterminate > div:nth-child(3) { transform: rotate(112.5deg); }
-		#status-indeterminate > div:nth-child(4) { transform: rotate(157.5deg); }
-		#status-indeterminate > div:nth-child(5) { transform: rotate(202.5deg); }
-		#status-indeterminate > div:nth-child(6) { transform: rotate(247.5deg); }
-		#status-indeterminate > div:nth-child(7) { transform: rotate(292.5deg); }
-		#status-indeterminate > div:nth-child(8) { transform: rotate(337.5deg); }
+		#status-indeterminate>div:nth-child(1) {
+			transform: rotate(22.5deg);
+		}
+
+		#status-indeterminate>div:nth-child(2) {
+			transform: rotate(67.5deg);
+		}
+
+		#status-indeterminate>div:nth-child(3) {
+			transform: rotate(112.5deg);
+		}
+
+		#status-indeterminate>div:nth-child(4) {
+			transform: rotate(157.5deg);
+		}
+
+		#status-indeterminate>div:nth-child(5) {
+			transform: rotate(202.5deg);
+		}
+
+		#status-indeterminate>div:nth-child(6) {
+			transform: rotate(247.5deg);
+		}
+
+		#status-indeterminate>div:nth-child(7) {
+			transform: rotate(292.5deg);
+		}
+
+		#status-indeterminate>div:nth-child(8) {
+			transform: rotate(337.5deg);
+		}
 
 		#status-notice {
 			margin: 0 100px;
@@ -113,24 +135,87 @@
 	</style>
 
 </head>
-<body>
-	<canvas id='canvas'>
-		HTML5 canvas appears to be unsupported in the current browser.<br />
-		Please try updating or use a different browser.
-	</canvas>
-	<div id='status'>
-		<div id='status-progress' style='display: none;' oncontextmenu='event.preventDefault();'><div id ='status-progress-inner'></div></div>
-		<div id='status-indeterminate' style='display: none;' oncontextmenu='event.preventDefault();'>
-			<div></div>
-			<div></div>
-			<div></div>
-			<div></div>
-			<div></div>
-			<div></div>
-			<div></div>
-			<div></div>
+
+<!-- HEADER Section-->
+<header>
+	<div class="collapse bg-dark" id="navbarHeader">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-8 col-md-7 py-4">
+					<h4 class="text-white">About</h4>
+					<p class="text-muted">By day, Mika Himself works on technical documentation and user experience at a large software company. By night, Mika Himself works with 2D games using the Godot Engine, and is one day hoping to create a slow-paced zombie game.</p>
+				</div>
+				<div class="col-sm-4 offset-md-1 py-4">
+					<h4 class="text-white">Contact</h4>
+					<ul class="list-unstyled">
+						<li><a href="https://twitter.com/mika_himself" class="text-white">Follow on Twitter</a></li>
+						<li><a href="https://github.com/mikahimself" class="text-white">Visit GitHub</a></li>
+					</ul>
+				</div>
+			</div>
 		</div>
-		<div id='status-notice' class='godot' style='display: none;'></div>
+	</div>
+	<div class="navbar navbar-dark bg-dark shadow-sm">
+		<div class="container d-flex justify-content-between">
+			<a href="#" class="navbar-brand d-flex align-items-center">
+				<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true" class="mr-2" viewBox="0 0 24 24" focusable="false">
+					<path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z" />
+					<circle cx="12" cy="13" r="4" /></svg>
+				<strong>Mika Himself</strong>
+			</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+		</div>
+	</div>
+</header>
+
+
+
+<main role="main">
+
+	<!-- INTRO Text-->
+	<div class="col-md-4 pt-5 px-5 mx-auto text-center">
+		<h1 class="display-4">Tanked</h1>
+		<p class="lead">Tanked is an original product, loosely inspired by Kee Games’ Tank from 1974. The game is still pretty much work in progress, 
+			but will one day include a single player campaign, quick matches and player vs. player game mode.</p>
+		<p class="lead">P1 Controls: Arrow Keys & Shift | P2 Controls: WSAD & Space | ESC: Pause Game</p>
+	</div>
+
+	<div class="container">
+
+		<!-- START ROW -->
+		<div class="row d-flex justify-content-center py-3" id="canvasRow">
+			<div class="card shadow">
+				<canvas id='canvas' tabindex='0'>
+					HTML5 canvas appears to be unsupported in the current browser.<br />
+					Please try updating or use a different browser.
+				</canvas>
+			</div>
+		</div>
+
+		<div class="row d-flex justify-content-center py-3">
+			<p class="lead"><span class="text-muted"><a href="https://mikahimself.github.io/">Back to Main Page</a></span></p>
+		</div>
+
+
+		<div id='status'>
+			<div id='status-progress' style='display: none;' oncontextmenu='event.preventDefault();'>
+				<div id='status-progress-inner'></div>
+			</div>
+			<div id='status-indeterminate' style='display: none;' oncontextmenu='event.preventDefault();'>
+				<div></div>
+				<div></div>
+				<div></div>
+				<div></div>
+				<div></div>
+				<div></div>
+				<div></div>
+				<div></div>
+			</div>
+			<div id='status-notice' class='godot' style='display: none;'></div>
+		</div>
+
 	</div>
 
 	<script type='text/javascript' src='tanked.js'></script>
@@ -140,7 +225,7 @@
 		var setStatusMode;
 		var setStatusNotice;
 
-		(function() {
+		(function () {
 
 			const MAIN_PACK = 'tanked.pck';
 			const INDETERMINATE_STATUS_STEP_MS = 100;
@@ -162,8 +247,9 @@
 			requestAnimationFrame(animate);
 
 			function adjustCanvasDimensions() {
-				canvas.width = innerWidth;
-				canvas.height = innerHeight;
+				var parent = document.getElementById("canvasRow");
+				canvas.width = 768;/*parent.offsetWidth;*/
+				canvas.height = 432;/*parent.offsetWidth / (16 / 9);*/
 			}
 			animationCallbacks.push(adjustCanvasDimensions);
 			adjustCanvasDimensions();
@@ -223,7 +309,7 @@
 			engine.setProgressFunc((current, total) => {
 
 				if (total > 0) {
-					statusProgressInner.style.width = current/total * 100 + '%';
+					statusProgressInner.style.width = current / total * 100 + '%';
 					setStatusMode('progress');
 					if (current === total) {
 						// wait for progress bar animation
@@ -256,6 +342,15 @@
 			}
 		})();
 	//]]></script>
-</body>
-</html>
+	<script type='text/javascript'>
+		window.onload = function () {
+			document.getElementById('canvas').focus();
+		}
+	</script>
+	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 
+</main>
+
+</html>
