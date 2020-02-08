@@ -7,9 +7,18 @@
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 	<title>Snake || Mika Himself</title>
 	<style type='text/css'>
+		body {
+			touch-action: none;
+			margin: 0;
+			border: 0 none;
+			padding: 0;
+			text-align: center;
+			background-color: white;
+		}
 
 		#canvas {
 			display: block;
+			margin: 0;
 			color: white;
 		}
 
@@ -129,7 +138,6 @@
 
 </head>
 
-<!-- HEADER Section-->
 <header>
 	<div class="collapse bg-dark" id="navbarHeader">
 		<div class="container">
@@ -165,7 +173,7 @@
 
 
 
-<main role="main">
+<main>
 
 	<!-- INTRO Text-->
 	<div class="col-md-4 pt-5 px-5 mx-auto text-center">
@@ -184,29 +192,27 @@
 				</canvas>
 			</div>
 		</div>
+	</div>
 
-		<div class="row d-flex justify-content-center py-3">
-			<p class="lead"><span class="text-muted"><a href="https://mikahimself.github.io/">Back to Main Page</a></span></p>
+	<div class="row d-flex justify-content-center py-3">
+		<p class="lead"><span class="text-muted"><a href="https://mikahimself.github.io/">Back to Main Page</a></span></p>
+	</div>
+	
+	<div id='status'>
+		<div id='status-progress' style='display: none;' oncontextmenu='event.preventDefault();'>
+			<div id='status-progress-inner'></div>
 		</div>
-
-
-		<div id='status'>
-			<div id='status-progress' style='display: none;' oncontextmenu='event.preventDefault();'>
-				<div id='status-progress-inner'></div>
-			</div>
-			<div id='status-indeterminate' style='display: none;' oncontextmenu='event.preventDefault();'>
-				<div></div>
-				<div></div>
-				<div></div>
-				<div></div>
-				<div></div>
-				<div></div>
-				<div></div>
-				<div></div>
-			</div>
-			<div id='status-notice' class='godot' style='display: none;'></div>
+		<div id='status-indeterminate' style='display: none;' oncontextmenu='event.preventDefault();'>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
 		</div>
-
+		<div id='status-notice' class='godot' style='display: none;'></div>
 	</div>
 
 	<script type='text/javascript' src='snake.js'></script>
@@ -218,6 +224,7 @@
 
 		(function () {
 
+			const EXECUTABLE_NAME = 'snake';
 			const MAIN_PACK = 'snake.pck';
 			const INDETERMINATE_STATUS_STEP_MS = 100;
 
@@ -238,9 +245,13 @@
 			requestAnimationFrame(animate);
 
 			function adjustCanvasDimensions() {
-				var parent = document.getElementById("canvasRow");
-				canvas.width = 768;/*parent.offsetWidth;*/
-				canvas.height = 432;/*parent.offsetWidth / (16 / 9);*/
+				var scale = window.devicePixelRatio || 1;
+				var width = 768; /*window.innerWidth;*/
+				var height = 432; /*window.innerHeight;*/
+				canvas.width = width * scale;
+				canvas.height = height * scale;
+				canvas.style.width = width + "px";
+				canvas.style.height = height + "px";
 			}
 			animationCallbacks.push(adjustCanvasDimensions);
 			adjustCanvasDimensions();
@@ -252,9 +263,9 @@
 				[statusProgress, statusIndeterminate, statusNotice].forEach(elem => {
 					elem.style.display = 'none';
 				});
-				if (animateStatusIndeterminate in animationCallbacks) {
-					animationCallbacks.erase(animateStatusIndeterminate);
-				}
+				animationCallbacks = animationCallbacks.filter(function (value) {
+					return (value != animateStatusIndeterminate);
+				});
 				switch (mode) {
 					case 'progress':
 						statusProgress.style.display = 'block';
@@ -326,7 +337,7 @@
 			} else {
 				setStatusMode('indeterminate');
 				engine.setCanvas(canvas);
-				engine.startGame(MAIN_PACK).then(() => {
+				engine.startGame(EXECUTABLE_NAME, MAIN_PACK).then(() => {
 					setStatusMode('hidden');
 					initializing = false;
 				}, displayFailureNotice);
@@ -341,7 +352,6 @@
 	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
 	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-
 </main>
 
 </html>
